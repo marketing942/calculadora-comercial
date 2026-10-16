@@ -9,15 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: "#f0fdf4",
-          100: "#dcfce7",
-          500: "#22c55e",
-          600: "#16a34a",
-          700: "#15803d",
-          800: "#166534",
-          900: "#14532d",
+        // Identidade visual CPPEM (mesmos tokens da Central de Ajuda)
+        gold: {
+          DEFAULT: "#af9256",
+          light: "#c9ae7a",
+          pale: "#f0dcb0",
+          dark: "#8a7040",
         },
+        base: "#0a0a0b",
+        surface: { DEFAULT: "#111115", 2: "#18181e", 3: "#1f1f28" },
+        ink: { DEFAULT: "#e8e4d9", soft: "#ada99b", muted: "#87847a" },
+        line: { DEFAULT: "rgba(175,146,86,0.18)", active: "rgba(175,146,86,0.55)" },
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "sans-serif"],
+        ui: ["var(--font-ui)", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
       },
     },
   },

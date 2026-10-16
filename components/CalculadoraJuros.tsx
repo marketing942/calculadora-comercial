@@ -160,18 +160,18 @@ export default function CalculadoraJuros() {
   return (
     <div className="space-y-6">
       {/* Inputs */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-        <h2 className="text-base font-semibold text-gray-800 mb-4">
+      <div className="bg-surface rounded-xl shadow-none border border-line p-6">
+        <h2 className="text-base font-semibold text-ink mb-4">
           Parâmetros da simulação
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {/* Price */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-ink mb-1">
               Valor do produto (R$)
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-medium">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted text-sm font-medium">
                 R$
               </span>
               <input
@@ -180,17 +180,17 @@ export default function CalculadoraJuros() {
                 value={priceInput}
                 onChange={handlePriceChange}
                 placeholder="0,00"
-                className="w-full pl-10 pr-4 py-2.5 border border-amber-300 bg-amber-50 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition"
+                className="w-full pl-10 pr-4 py-2.5 border border-gold/60 bg-gold/10 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gold-light focus:border-transparent transition"
               />
             </div>
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-ink-muted mt-1">
               Preço que o cliente vê no checkout
             </p>
           </div>
 
           {/* Rate */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-ink mb-1">
               Taxa de juros mensal (%)
             </label>
             <div className="relative">
@@ -202,20 +202,20 @@ export default function CalculadoraJuros() {
                 placeholder="1,89"
                 className={`w-full pl-4 pr-10 py-2.5 border rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:border-transparent transition ${
                   rateWarning
-                    ? "border-red-400 bg-red-50 focus:ring-red-400"
-                    : "border-amber-300 bg-amber-50 focus:ring-amber-400"
+                    ? "border-red-500/40 bg-red-500/10 focus:ring-red-400"
+                    : "border-gold/60 bg-gold/10 focus:ring-gold-light"
                 }`}
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-medium">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-muted text-sm font-medium">
                 %
               </span>
             </div>
 
             {/* Rate feedback */}
             {rateWarning && (
-              <div className="flex items-start gap-2 mt-2 p-2.5 bg-red-50 border border-red-200 rounded-lg">
+              <div className="flex items-start gap-2 mt-2 p-2.5 bg-red-500/10 border border-red-500/40 rounded-lg">
                 <svg
-                  className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0"
+                  className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -226,10 +226,10 @@ export default function CalculadoraJuros() {
                   />
                 </svg>
                 <div>
-                  <p className="text-xs font-semibold text-red-700">
+                  <p className="text-xs font-semibold text-red-400">
                     Taxa muito baixa!
                   </p>
-                  <p className="text-xs text-red-600">
+                  <p className="text-xs text-red-400">
                     Abaixo de {MIN_RATE_WARNING.toFixed(2).replace(".", ",")}%
                     pode resultar em prejuízo nas vendas parceladas. Sugerimos
                     entre{" "}
@@ -246,7 +246,7 @@ export default function CalculadoraJuros() {
               </div>
             )}
             {rateOk && (
-              <p className="text-xs text-green-700 mt-1 flex items-center gap-1">
+              <p className="text-xs text-emerald-400 mt-1 flex items-center gap-1">
                 <svg
                   className="w-3.5 h-3.5"
                   fill="currentColor"
@@ -262,7 +262,7 @@ export default function CalculadoraJuros() {
               </p>
             )}
             {rateHigh && (
-              <p className="text-xs text-amber-600 mt-1 flex items-center gap-1">
+              <p className="text-xs text-gold-light mt-1 flex items-center gap-1">
                 <svg
                   className="w-3.5 h-3.5"
                   fill="currentColor"
@@ -278,7 +278,7 @@ export default function CalculadoraJuros() {
               </p>
             )}
             {!rateWarning && !rateOk && !rateHigh && (
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="text-xs text-ink-muted mt-1">
                 Sugestão: entre 1,70% e 2,50% ao mês
               </p>
             )}
@@ -288,13 +288,13 @@ export default function CalculadoraJuros() {
 
       {/* Results table */}
       {price > 0 ? (
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-100">
-            <h2 className="text-base font-semibold text-gray-800">
+        <div className="bg-surface rounded-xl shadow-none border border-line overflow-hidden">
+          <div className="px-6 py-4 border-b border-line">
+            <h2 className="text-base font-semibold text-ink">
               Simulação de venda —{" "}
-              <span className="text-green-700">{fmt(price)}</span>
+              <span className="text-emerald-400">{fmt(price)}</span>
             </h2>
-            <p className="text-xs text-gray-500 mt-0.5">
+            <p className="text-xs text-ink-soft mt-0.5">
               Taxas Pagar.me (MDR D+2) · Gateway R$0,30 · Taxa de juros{" "}
               {rateInput.replace(".", ",")}% a.m.
             </p>
@@ -303,11 +303,11 @@ export default function CalculadoraJuros() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-gray-50 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <tr className="bg-surface-2 text-xs font-semibold text-ink-soft uppercase tracking-wide">
                   <th className="text-left px-4 py-3 w-16">Parcelas</th>
                   <th className="text-right px-4 py-3">
                     Valor por parcela
-                    <span className="block font-normal normal-case text-gray-400">
+                    <span className="block font-normal normal-case text-ink-muted">
                       cliente paga
                     </span>
                   </th>
@@ -322,14 +322,14 @@ export default function CalculadoraJuros() {
                   </th>
                   <th className="text-right px-4 py-3">
                     Você recebe
-                    <span className="block font-normal normal-case text-gray-400">
+                    <span className="block font-normal normal-case text-ink-muted">
                       líquido
                     </span>
                   </th>
                   <th className="text-right px-4 py-3 pr-5">Resultado</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-line">
                 {rows.map((row, idx) => {
                   const isBreakEven = Math.abs(row.profitLossPct) < 0.05;
                   const isPositive = row.profitLossPct > 0.05;
@@ -343,7 +343,7 @@ export default function CalculadoraJuros() {
                         <tr key={`sep-${idx}`}>
                           <td
                             colSpan={7}
-                            className="px-4 py-2 bg-gray-50 text-xs text-gray-400 font-medium"
+                            className="px-4 py-2 bg-surface-2 text-xs text-ink-muted font-medium"
                           >
                             Outros métodos de pagamento
                           </td>
@@ -351,29 +351,29 @@ export default function CalculadoraJuros() {
                       )}
                       <tr
                         key={row.label}
-                        className={`transition-colors hover:bg-gray-50 ${
-                          isPositive ? "bg-green-50/30" : ""
+                        className={`transition-colors hover:bg-surface-3 ${
+                          isPositive ? "bg-emerald-500/10/30" : ""
                         }`}
                       >
-                        <td className="px-4 py-3 font-semibold text-gray-800">
+                        <td className="px-4 py-3 font-semibold text-ink">
                           {row.label}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-ink">
                           {fmt(row.customerPerInstallment)}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-ink">
                           {fmt(row.customerTotal)}
                         </td>
                         <td className="px-4 py-3 text-right">
                           {row.interestTransferred > 0 ? (
-                            <span className="text-blue-600 font-medium">
+                            <span className="text-sky-400 font-medium">
                               {fmt(row.interestTransferred)}
                             </span>
                           ) : (
-                            <span className="text-gray-300">—</span>
+                            <span className="text-ink-muted">—</span>
                           )}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-500">
+                        <td className="px-4 py-3 text-right text-ink-soft">
                           {row.pagarmeRate !== null ? (
                             row.label === "Pix" ? (
                               `${PIX_RATE.toFixed(2).replace(".", ",")}%`
@@ -386,17 +386,17 @@ export default function CalculadoraJuros() {
                             `R$ ${BOLETO_FIXED_COST.toFixed(2).replace(".", ",")}`
                           )}
                         </td>
-                        <td className="px-4 py-3 text-right font-semibold text-gray-900">
+                        <td className="px-4 py-3 text-right font-semibold text-ink">
                           {fmt(row.sellerReceives)}
                         </td>
                         <td className="px-4 py-3 pr-5 text-right">
                           <span
                             className={`inline-block px-2 py-0.5 rounded text-xs font-semibold ${
                               isPositive
-                                ? "bg-green-100 text-green-800"
+                                ? "bg-emerald-500/10 text-emerald-400"
                                 : isNegative
-                                ? "bg-red-100 text-red-800"
-                                : "bg-gray-100 text-gray-600"
+                                ? "bg-red-500/10 text-red-400"
+                                : "bg-surface-3 text-ink-soft"
                             }`}
                           >
                             {fmtPct(row.profitLossPct)}
@@ -411,26 +411,26 @@ export default function CalculadoraJuros() {
           </div>
 
           {/* Legend */}
-          <div className="px-6 py-3 bg-gray-50 border-t border-gray-100 flex flex-wrap gap-4 text-xs text-gray-500">
+          <div className="px-6 py-3 bg-surface-2 border-t border-line flex flex-wrap gap-4 text-xs text-ink-soft">
             <span className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-sm bg-green-100 border border-green-300 inline-block" />
+              <span className="w-3 h-3 rounded-sm bg-emerald-500/10 border border-emerald-500/30 inline-block" />
               Resultado positivo (você recebe mais que o preço original)
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-sm bg-red-100 border border-red-300 inline-block" />
+              <span className="w-3 h-3 rounded-sm bg-red-500/10 border border-red-500/40 inline-block" />
               Resultado negativo (você recebe menos que o preço original)
             </span>
-            <span className="text-gray-400">
+            <span className="text-ink-muted">
               * &ldquo;Resultado&rdquo; = diferença entre o líquido recebido e o
               preço original
             </span>
           </div>
         </div>
       ) : (
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
-          <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <div className="bg-surface rounded-xl shadow-none border border-line p-12 text-center">
+          <div className="w-16 h-16 bg-surface-3 rounded-xl flex items-center justify-center mx-auto mb-4">
             <svg
-              className="w-8 h-8 text-gray-300"
+              className="w-8 h-8 text-ink-muted"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -443,7 +443,7 @@ export default function CalculadoraJuros() {
               />
             </svg>
           </div>
-          <p className="text-gray-400 text-sm">
+          <p className="text-ink-muted text-sm">
             Preencha o valor do produto para ver a simulação
           </p>
         </div>
@@ -451,8 +451,8 @@ export default function CalculadoraJuros() {
 
       {/* Fee breakdown info */}
       {price > 0 && (
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">
+        <div className="bg-surface rounded-xl shadow-none border border-line p-5">
+          <h3 className="text-sm font-semibold text-ink mb-3">
             Custos fixos do meio de pagamento (Pagar.me)
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -494,27 +494,27 @@ function InfoCard({
     <div
       className={`rounded-xl p-3 border ${
         highlight
-          ? "bg-amber-50 border-amber-200"
-          : "bg-gray-50 border-gray-200"
+          ? "bg-gold/10 border-gold/40"
+          : "bg-surface-2 border-line"
       }`}
     >
       <p
         className={`text-xs font-medium mb-1 ${
-          highlight ? "text-amber-700" : "text-gray-500"
+          highlight ? "text-gold-light" : "text-ink-soft"
         }`}
       >
         {label}
       </p>
       <p
         className={`text-lg font-bold ${
-          highlight ? "text-amber-800" : "text-gray-800"
+          highlight ? "text-gold-light" : "text-ink"
         }`}
       >
         {value}
       </p>
       <p
         className={`text-xs mt-0.5 ${
-          highlight ? "text-amber-600" : "text-gray-400"
+          highlight ? "text-gold-light" : "text-ink-muted"
         }`}
       >
         {sub}
